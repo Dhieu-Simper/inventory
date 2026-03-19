@@ -1,0 +1,49 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm p-3">
+            <h5>Total Products</h5>
+            <h2>{{ total_products }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm p-3">
+            <h5>Total Suppliers</h5>
+            <h2>{{ total_suppliers }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm p-3">
+            <h5>Total Categories</h5>
+            <h2>{{ total_categories }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm p-3">
+            <h5>Total Sales</h5>
+            <h2>UGX {{ total_sales }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm p-3">
+            <h5>Total Purchases</h5>
+            <h2>UGX {{ total_purchases }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm p-3 border-start border-danger border-4">
+            <h5>Low Stock Products</h5>
+            <h2 class="text-danger">{{ low_stock_products }}</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}
