@@ -1,0 +1,39 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Purchases</h2>
+    <a href="{% url 'purchase_create' %}" class="btn btn-primary">+ Record Purchase</a>
+</div>
+
+<div class="card shadow-sm p-3">
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Purchase No</th>
+                <th>Supplier</th>
+                <th>Purchase Date</th>
+                <th>Total Amount</th>
+                <th>Created By</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ purchase.purchase_no }}</td>
+                <td>{{ purchase.supplier }}</td>
+                <td>{{ purchase.purchase_date }}</td>
+                <td>UGX {{ purchase.total_amount }}</td>
+                <td>{{ purchase.created_by|default:"-" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No purchases found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
