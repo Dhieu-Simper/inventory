@@ -1,0 +1,22 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<div class="card shadow-sm p-4">
+    <h2 class="mb-4">{{ title }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <h5 class="mb-3">Sale Details</h5>
+        {{ sale_form.as_p }}
+
+        <hr>
+
+        <h5 class="mb-3">Sale Item</h5>
+        {{ item_form.as_p }}
+
+        <button type="submit" class="btn btn-success">Save Sale</button>
+        <a href="{% url 'sale_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
