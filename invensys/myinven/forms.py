@@ -1,5 +1,9 @@
 from django import forms
-from .models import Category, Supplier, Product
+from .models import (
+    Category, Supplier, Product,
+    Purchase, PurchaseItem,
+    Sale, SaleItem
+)
 
 
 class CategoryForm(forms.ModelForm):
@@ -50,4 +54,47 @@ class ProductForm(forms.ModelForm):
             'selling_price': forms.NumberInput(attrs={'class': 'form-control'}),
             'quantity_in_stock': forms.NumberInput(attrs={'class': 'form-control'}),
             'reorder_level': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
+
+class PurchaseForm(forms.ModelForm):
+    class Meta:
+        model = Purchase
+        fields = ['purchase_no', 'supplier', 'purchase_date']
+        widgets = {
+            'purchase_no': forms.TextInput(attrs={'class': 'form-control'}),
+            'supplier': forms.Select(attrs={'class': 'form-select'}),
+            'purchase_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        }
+
+
+class PurchaseItemForm(forms.ModelForm):
+    class Meta:
+        model = PurchaseItem
+        fields = ['product', 'quantity', 'unit_cost']
+        widgets = {
+            'product': forms.Select(attrs={'class': 'form-select'}),
+            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+            'unit_cost': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
+
+class SaleForm(forms.ModelForm):
+    class Meta:
+        model = Sale
+        fields = ['invoice_no', 'sale_date']
+        widgets = {
+            'invoice_no': forms.TextInput(attrs={'class': 'form-control'}),
+            'sale_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        }
+
+
+class SaleItemForm(forms.ModelForm):
+    class Meta:
+        model = SaleItem
+        fields = ['product', 'quantity', 'unit_price']
+        widgets = {
+            'product': forms.Select(attrs={'class': 'form-select'}),
+            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+            'unit_price': forms.NumberInput(attrs={'class': 'form-control'}),
         }
