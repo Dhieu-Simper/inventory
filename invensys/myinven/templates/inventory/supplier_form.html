@@ -1,0 +1,13 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<div class="card shadow-sm p-4">
+    <h2 class="mb-4">{{ title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'supplier_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
